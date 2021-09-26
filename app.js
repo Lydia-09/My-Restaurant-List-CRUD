@@ -1,6 +1,9 @@
 // 載入 express, mongoose 並建構應用程式伺服器
 const express = require('express')
 const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
+const Restaurant = require('./models/restaurant')
+const restaurant = require('./models/restaurant')
 const app = express()
 const port = 3000
 
@@ -17,9 +20,19 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+// 設定 handlebars
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}))
+app.set('view engine', 'hbs')
+
+// setting static files
+app.use(express.static('public'))
+
 // 設定首頁路由
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  Restaurant.find()
+  .lean()
+  .then(restaurants => res.render('index', { restaurants }))
+  .catch(error => console.log(error))
 })
 
 // start and listen on Express server
