@@ -25,10 +25,6 @@ const restaurantSchema = new Schema({
     type: String,
     require: true
   },
-  name_en: {
-    type: String,
-    require: true
-  },
   google_map: {
     type: String,
     require: true
