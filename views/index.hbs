@@ -40,6 +40,17 @@
                 {{this.rating}}
                 <i class="fas fa-star fa-xs"></i>
               </span>
+              <div class="d-flex justify-content-end">
+                <a type="button" class="btn btn-outline-secondary btn-sm mx-1" href="./restaurants/{{ this._id }}">
+                  <i class="far fa-file-alt"></i>
+                </a>
+                <a type="button" class="btn btn-outline-secondary btn-sm mx-1" href="./restaurants/{{ this._id }}/edit">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <form action="/restaurants/{{ this._id }}/delete" method="POST">
+                  <button class="btn btn-outline-secondary btn-sm mx-1" type="submit"><i class="fas fa-trash-alt"></i></button>
+                </form>
+              </div>
             </div>
           </div>
         </a>
