@@ -3,7 +3,7 @@
 <div class="container restaurant-show-container">
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
-      <form action="/restaurants" method="POST">
+      <form action="/restaurants/{{ restaurant._id }}/edit" method="POST">
         <div class="form-row">
           <div class="form-group col-md-6">
             <i class="fas fa-store"></i>
@@ -67,7 +67,7 @@
           <label for="description">說明文字</label>
           <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" required>{{ restaurant.description }}</textarea>
         </div>
-        <button class="btn btn-outline-primary" type="submit">新增餐廳</button>
+        <button class="btn btn-outline-primary" type="submit">Save</button>
         <a href="/"><button type="button" class="btn btn-outline-primary">返回</button></a>
       </form>
     </div>
