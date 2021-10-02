@@ -34,7 +34,7 @@ npm install
 npm run seed
 ```
 
-3. 執行程式
+4. 執行程式
 
 ```
 npm run dev
