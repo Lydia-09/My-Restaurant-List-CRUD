@@ -52,6 +52,13 @@ header {
   color: white !important;
 }
 
+.text-secondary i {
+  width: 20px;
+}
+
+.btn-crud i {
+  margin-right: 4px;
+}
 .form-control:focus {
   box-shadow: none;
   border-color: #ced4da;
@@ -100,12 +107,15 @@ header {
 }
 
 .restaurant-show-container {
-  margin-top: -75px;
+  margin-top: -80px;
 }
 
 @media screen and (max-width: 992px) {
   .card img {
-    height: 115px;
+    height: auto;
+  }
+  .badge-danger {
+    margin-bottom: 1.3rem;
   }
 }
 
@@ -119,4 +129,39 @@ header {
   .card img {
     height: auto;
   }
+}
+
+.list-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* change range style */
+/* remove default style */
+input[type="range"],
+input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+#rating {
+  /* background: linear-gradient(to right, #82CFD0 0%, #82CFD0 50%, #fff 50%, #fff 100%); */
+  border: solid 1px #fce2cf;
+  border-radius: 8px;
+  height: 7px;
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+
+/* 滑動鈕 樣式 */
+input[type="range"]::-webkit-slider-thumb {
+  position: relative;
+  height: 16px;
+  width: 16px;
+  margin-top: -1px; /* 會受到寬高影響定位，需微調 */
+  background-color: #dc3545 !important; /* 為了解釋方便所設定 */
+  /* background-color: white; */ /* 我的目標樣式 */
+  border-radius: 50%;
+  border: 1px solid #dc3545 !important;
 }

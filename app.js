@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
-const restaurant = require('./models/restaurant')
 const app = express()
 const port = 3000
 
@@ -27,7 +26,7 @@ app.set('view engine', 'hbs')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// setting static files
+// 設定靜態文件
 app.use(express.static('public'))
 
 // 設定首頁路由
@@ -60,14 +59,16 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
 })
-// update
+
+// 路由：更新特定餐廳
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findByIdAndUpdate(id, { $set: req.body })
     .then(()=> res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
-//delete
+
+// 路由：刪除特定餐廳
 app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -82,7 +83,28 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// start and listen on Express server
+// 搜尋設定 : name, name_en, category of restaurants
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword.toLowerCase().replace(/\s+/g, '')
+  Restaurant.find()
+  .lean()
+  .then( allRestaurants => {
+   const restaurants = allRestaurants.filter ( item => {
+     return item.name.toLowerCase().includes(keyword) || item.name_en.toLowerCase().includes(keyword) || item.category.toLowerCase().includes(keyword)
+   })
+   
+  if ( keyword.trim() !== '' ) {
+      res.render('index', { restaurants, keyword})
+    } else {
+      const emptyText = 'Invalid Value'
+      console.log(`輸入值為空白鍵: ${emptyText}`)
+      res.render('index', {emptyText})
+    }
+  })
+  .catch(error => console.log(error))
+})
+
+// 在 Express 服務器上啟動和偵聽
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`)
 })
