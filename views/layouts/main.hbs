@@ -32,16 +32,24 @@
   <script src="/js/popper.js"></script>
   <script src="/js/jquery-3.6.0.min.js"></script>
   <script src="/js/bootstrap.js"></script>
+  <script src="/js/showAlert.js"></script>
   <script>
-    function showalert() {
-        alert("您確定要刪除此餐廳嗎?");
-      }
-  </script>
-  <script>
-    document.getElementById("rating").oninput = function () {
-        var value = (this.value - this.min) / (this.max - this.min) * 100
-        this.style.background = 'linear-gradient(to right, #fce2cf 0%, #fce2cf ' + value + '%, #fff ' + value + '%, white 100%)'
-      };
+    const input = document.getElementById("rating")
+
+    function setBackgroundSize(input) {
+      input.style.setProperty("--background-size", `${getBackgroundSize(input)}%`)
+    }
+
+    setBackgroundSize(input)
+    input.addEventListener("input", () => setBackgroundSize(input))
+
+    function getBackgroundSize(input) {
+      const min = +input.min || 0;
+      const max = +input.max || 100;
+      const value = +input.value;
+      const size = (value - min) / (max - min) * 100;
+      return size;
+    }
   </script>
 </body>
 
