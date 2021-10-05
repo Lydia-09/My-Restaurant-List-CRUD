@@ -41,6 +41,14 @@
         </span>
         {{restaurant.phone}}
       </p>
+      {{#if restaurant.website}}
+      <p class="mb-1">
+        <span class="text-secondary">
+          <i class="fas fa-link pr-1"></i>官方網站：
+        </span>
+        <a href="{{restaurant.website}}" target="_blank">{{restaurant.website}}</a>
+      </p>
+      {{/if}}
       <p class="mb-5">{{restaurant.description}}</p>
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}" style="max-width: 600px;">
     </div>
