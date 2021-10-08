@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Restaurant = require('../restaurant')
 const seedData = require('./restaurant.json')
 
-mongoose.connect('mongodb://localhost/Restaurant-List')
+mongoose.connect('mongodb://localhost/restaurant-list-crud')
 
 const db = mongoose.connection
 

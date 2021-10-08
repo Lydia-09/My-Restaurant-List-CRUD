@@ -8,7 +8,7 @@ const app = express()
 const port = 3000
 
 // 設定連線到 mongoDB
-mongoose.connect('mongodb://localhost/Restaurant-List')
+mongoose.connect('mongodb://localhost/restaurant-list-crud')
 // 取得資料庫連線狀態
 const db = mongoose.connection
 // 連線異常
